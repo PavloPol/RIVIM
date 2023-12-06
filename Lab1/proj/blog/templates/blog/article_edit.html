@@ -1,0 +1,7 @@
+{% block content %}
+  <h1>{% if form.instance.pk %}Edit Article{% else %}New Article{% endif %}</h1>
+  <form method="post" class="article-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

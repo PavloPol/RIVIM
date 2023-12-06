@@ -1,0 +1,38 @@
+<form method="get" action="{% url 'article_list' %}">
+  <label for="tags">Tags:</label>
+  {% for tag in all_tags %}
+      <input type="checkbox" name="tag" value="{{ tag.name }}" {% if tag.name in selected_tags %}checked{% endif %}>
+      {{ tag.name }}
+  {% endfor %}
+
+  <br>
+  
+  <label for="category">Category:</label>
+  <select name="category">
+      <option value="" {% if not selected_category %}selected{% endif %}>All</option>
+      {% for category in all_categories %}
+          <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>
+              {{ category.name }}
+          </option>
+      {% endfor %}
+  </select>
+
+  <br>
+
+  <button type="submit">Filter</button>
+</form>
+
+{% for article in articles %}
+    <h2><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h2>
+    <p>Author: {{ article.author.username }}</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <br>
+    <a href="{% url 'article_new' %}"><button>Create New Article</button></a>
+    <a href="{% url 'logout' %}?next={% url 'article_list' %}"><button>Logout</button></a>
+{% else %}
+    <a href="{% url 'login' %}"><button>Login</button></a>
+{% endif %}
+
+{% include 'blog/static_info.html' %}

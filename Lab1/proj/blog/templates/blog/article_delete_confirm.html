@@ -1,0 +1,7 @@
+<h2>Confirm Deletion</h2>
+<p>Are you sure you want to delete "{{ article.title }}"?</p>
+<form method="post" action="{% url 'article_delete' pk=article.pk %}">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+  <a href="{% url 'article_detail' pk=article.pk %}">Cancel</a>
+</form>

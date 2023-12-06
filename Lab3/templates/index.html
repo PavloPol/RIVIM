@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books app</title>
+</head>
+<body>
+
+    <h2>Register</h2>
+    <form id="register-form">
+        <label for="register-username">Username:</label>
+        <input type="text" id="register-username" name="register-username" required>
+        <label for="register-password">Password:</label>
+        <input type="password" id="register-password" name="register-password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <br>
+    <h2>Login</h2>
+    <form id="login-form">
+        <label for="login-username">Username:</label>
+        <input type="text" id="login-username" name="login-username" required>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="login-password" required>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <div id="user-info"></div>
+    <button id="logout-btn">Logout</button>
+
+    <h1>Your Books</h1>
+    <ul id="book-list"></ul>
+    <br>
+    <div style="display: flex; align-items: center;">
+        <button id="prev-page-btn">Previous Page</button>
+        <div id="page-info-container" style="margin: 0 10px;"></div>
+        <button id="next-page-btn">Next Page</button>
+    </div>
+
+    <h2>Add a Book</h2>
+    <form id="add-book-form">
+        <label for="book_title">Book Title:</label>
+        <input type="text" id="book_title" name="book_title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<a href="{% url 'article_list' %}"><button>To main page</button></a>
+<h2>{{ article.title }}</h2>
+<p>Category: {{ article.category.name }}</p>
+<p>Tags: {% for tag in article.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<p>{{ article.content }}</p>
+
+{% if user.is_authenticated and user == article.author %}
+  <a href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+  <a href="{% url 'article_delete' pk=article.pk %}">Delete</a>
+{% endif %}
+
+<h3>Comments:</h3>
+{% for comment in comments %}
+    <p>{{ comment.user.username }} - {{ comment.created_at }}<br>{{ comment.content }}</p>
+{% endfor %}
+
+<h3>Add a Comment:</h3>
+<form method="post" action="{% url 'article_detail' pk=article.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Add Comment</button>
+</form>
